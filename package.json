@@ -9,8 +9,14 @@
   "author": "artriks",
   "license": "ISC",
   "dependencies": {
-    "express": "^3.5.3",
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "errorhandler": "^1.4.2",
+    "express": "^4.0.0",
     "express-handlebars": "^2.0.1",
-    "express3-handlebars": "^0.5.2"
+    "express3-handlebars": "^0.5.2",
+    "method-override": "^2.3.5",
+    "moment": "^2.10.6",
+    "morgan": "^1.6.1"
   }
 }
