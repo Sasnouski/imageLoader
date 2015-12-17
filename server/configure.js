@@ -2,14 +2,17 @@
 
 var path = require('path'),
     routes = require('./routes'),
-    exphbs = require('express3-handlebars'),
+    exphbs = require('express-handlebars'),
     express = require('express'),
+    busboy = require('connect-busboy'),
+    multer = require('multer'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     morgan = require('morgan'),
     methodOverride = require('method-override'),
     errorHandler = require('errorhandler'),
     moment = require('moment');
+
 module.exports = function(app) {
     app.engine('handlebars', exphbs.create({
         defaultLayout: 'main',
@@ -23,9 +26,10 @@ module.exports = function(app) {
     }).engine);
     app.set('view engine', 'handlebars');
     app.use(morgan('dev'));
-    app.use(bodyParser({
-        uploadDir:path.join(__dirname, '../public/upload/temp')
-    }));
+    app.use(busboy());
+    //app.use(bodyParser({
+    //    uploadDir:path.join(__dirname, '../public/upload/temp')
+    //}));
     app.use(methodOverride());
     app.use(cookieParser('some-secret-value-here'));
     routes.initialize(app, new express.Router());

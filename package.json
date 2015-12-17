@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "connect-busboy": "0.0.2",
     "cookie-parser": "^1.4.0",
     "errorhandler": "^1.4.2",
     "express": "^4.0.0",
@@ -17,6 +18,7 @@
     "express3-handlebars": "^0.5.2",
     "method-override": "^2.3.5",
     "moment": "^2.10.6",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "multer": "^1.1.0"
   }
 }
