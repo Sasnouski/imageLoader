@@ -6,13 +6,13 @@
     <div class="panel-body">
         <p>{{ image.description }}</p>
         <div class="col-md-12 text-center">
-            <img src="/public/upload/{{image.filename}}" class="imgthumbnail">
+            <img src="/public/upload/temp/{{image.filename}}" class="imgthumbnail">
         </div>
     </div>
     <div class="panel-footer">
         <div class="row">
             <div class="col-md-8">
-                <button class="btn btn-success" id="btn-like" dataid="{{image.uniqueId }}"><i class="fa fa-heart"> Like</i></button>
+                <button class="btn btn-success" id="btn-like" data-id="{{image.uniqueId }}"><i class="fa fa-heart"> Like</i></button>
                 <strong class="likes-count">{{ image.likes }}</strong>
                 &nbsp; - &nbsp; <i class="fa fa-eye"></i> <strong>{{ image.views }}</strong>
                 &nbsp; - &nbsp; Posted: <em class="text-muted">{{timeago image.timestamp }}</em>
@@ -51,8 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-12">
-                        <label class="col-sm-2 control-label"
-                               for="comment">Comment:</label>
+                        <label class="col-sm-2 control-label" for="comment">Comment:</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" name="comment" rows="2"></textarea>
                         </div>
