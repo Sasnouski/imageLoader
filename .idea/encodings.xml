@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/controllers/home.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/controllers/image.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/helpers/comments.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/helpers/images.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/helpers/sidebar.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/helpers/stats.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/models/comment.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/models/image.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/models/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/scripts.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/configure.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/routes.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/views/image.handlebars" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/views/index.handlebars" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/views/partials/comments.handlebars" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/views/partials/popular.handlebars" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/views/partials/stats.handlebars" charset="UTF-8" />
+  </component>
+</project>

@@ -27,9 +27,10 @@ module.exports = function(app) {
     app.set('view engine', 'handlebars');
     app.use(morgan('dev'));
     app.use(busboy());
-    //app.use(bodyParser({
-    //    uploadDir:path.join(__dirname, '../public/upload/temp')
-    //}));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(methodOverride());
     app.use(cookieParser('some-secret-value-here'));
     routes.initialize(app, new express.Router());
