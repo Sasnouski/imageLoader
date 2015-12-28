@@ -4,9 +4,9 @@ var path = require('path'),
     routes = require('./routes'),
     exphbs = require('express-handlebars'),
     express = require('express'),
-    bodyParser  = require('body-parser'),
     busboy = require('connect-busboy'),
     multer = require('multer'),
+    bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     morgan = require('morgan'),
     methodOverride = require('method-override'),
@@ -27,10 +27,9 @@ module.exports = function(app) {
     app.set('view engine', 'handlebars');
     app.use(morgan('dev'));
     app.use(busboy());
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+    //app.use(bodyParser({
+    //    uploadDir:path.join(__dirname, '../public/upload/temp')
+    //}));
     app.use(methodOverride());
     app.use(cookieParser('some-secret-value-here'));
     routes.initialize(app, new express.Router());
