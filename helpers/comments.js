@@ -2,7 +2,6 @@
 
 var models = require('../models'),
     async = require('async');
-
 module.exports = {
     newest: function(callback) {
         models.Comment.find({}, {}, { limit: 5, sort: { 'timestamp': -1 } },
@@ -14,12 +13,12 @@ module.exports = {
                             comment.image = image;
                             next(err);
                         });
-                    async.each(comments, attachImage,
-                        function(err) {
-                            if (err) throw err;
-                            callback(err, comments);
-                        });
                 };
+                async.each(comments, attachImage,
+                    function(err) {
+                        if (err) throw err;
+                        callback(err, comments);
+                    });
             });
     }
 };

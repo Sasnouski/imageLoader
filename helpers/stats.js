@@ -5,10 +5,14 @@ var models = require('../models'),
 module.exports = function(callback) {
     async.parallel([
         function(next) {
-            models.Image.count({}, next);
+            models.Image.count({}, function(err, total){
+                next(err, total);
+            });
         },
         function(next) {
-            models.Comment.count({}, next);
+            models.Comment.count({}, function(err, total){
+                next(err, total);
+            });
         },
         function(next) {
             models.Image.aggregate({ $group : {
@@ -35,7 +39,7 @@ module.exports = function(callback) {
             });
         }
     ], function(err, results){
-        callback({
+        callback(null, {
             images: results[0],
             comments: results[1],
             views: results[2],
