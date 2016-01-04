@@ -8,5 +8,6 @@ module.exports.initialize = function(app, router) {
     router.post('/images', image.create);
     router.post('/images/:image_id/like', image.like);
     router.post('/images/:image_id/comment', image.comment);
+    app.delete('/images/:image_id', image.remove);
     app.use('/', router);
 };

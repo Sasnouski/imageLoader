@@ -2,8 +2,7 @@
 var fs = require('fs'),
     path = require('path'),
     sidebar = require('../helpers/sidebar'),
-    Models = require('../models'),
-    util = require('util');
+    Models = require('../models');
 module.exports = {
     index: function(req, res) {
         var viewModel = {
@@ -12,7 +11,6 @@ module.exports = {
         };
         Models.Image.findOne({ filename: { $regex: req.params.image_id } },
             function(err, image) {
-
                 if (err) { throw err; }
                 if (image) {
                     image.views = image.views + 1;
@@ -41,9 +39,7 @@ module.exports = {
                     res.json(500, {error: 'Such image already exists'});
                 } else {
                     if (ext == 'image') {
-                        console.log('1. Uploading: ' + filename);
                         file.pipe(fs.createWriteStream(tempPath + filename));
-                        console.log('tempPath + filename:   ' + tempPath + filename );
                         var newImg = new Models.Image({
                             filename: filename,
                             title: '',
@@ -52,23 +48,19 @@ module.exports = {
                         req.busboy.on('field', function(fieldname, val) {
                             if(fieldname == 'title'){
                                 newImg.title = val;
-                                console.log('2. title  ' + newImg.title)
                             }
                         });
                         req.busboy.on('field', function(fieldname, val) {
                             if(fieldname == 'description'){
                                 newImg.description = val;
-                                console.log('3. descr  ' + newImg.description)
                             }
                         });
                         req.busboy.on('finish', function() {
                             newImg.save(function (err, image) {
-                                console.log('4. image  ' + image);
                                 res.redirect('/images/' + image.filename);
                             });
                         })
                     } else {
-                        console.log('Fail');
                         res.json(500, {error: 'Only image files are allowed.'});
                     }
                 }
@@ -98,8 +90,6 @@ module.exports = {
             function(err, image) {
                 if (!err && image) {
                     var newComment = new Models.Comment(req.body);
-                    console.log(req.body);
-                    //newComment.gravatar = md5(newComment.email);
                     newComment.image_id = image._id;
                     newComment.save(function(err, comment) {
                         if (err) { throw err; }
@@ -109,5 +99,28 @@ module.exports = {
                     res.redirect('/');
                 }
             });
+    },
+    remove: function(req, res){
+        console.log('remove is clicked');
+        Models.Image.findOne({ filename: { $regex: req.params.image_id }},
+            function(err, image) {
+                if (err) { throw err; }
+                fs.unlink(path.resolve('./public/upload/temp/' + image.filename),
+                    function(err) {
+                        if (err) { throw err; }
+                        Models.Comment.remove({ image_id: image._id},
+                            function(err) {
+                                image.remove(function(err) {
+                                    if (!err) {
+                                        res.send(true);
+                                    } else {
+                                        res.send(false);
+                                    }
+                                });
+                            });
+                    });
+            });
     }
+
+
 };
